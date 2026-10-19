@@ -1,29 +1,56 @@
 {
-  "name": "codingskills",
+  "name": "coding-skills",
   "owner": {
-    "name": "Jordan Coin Jackson",
-    "url": "https://github.com/JordanCoin"
+    "name": "Reynier de la Rosa",
+    "url": "https://github.com/sirio3mil"
   },
   "metadata": {
-    "description": "Coding principles for AI agents — KISS, DRY, SOLID, YAGNI, separation of concerns, law of demeter, and more",
-    "version": "1.0.0",
-    "repository": "https://github.com/JordanCoin/codingskills"
+    "description": "Fork of JordanCoin/codingskills split into separately enabled plugins, so each project turns on only the principles it wants",
+    "version": "1.0.0"
   },
   "plugins": [
     {
-      "name": "coding-skills",
-      "description": "9 foundational coding principle skills for AI agents: KISS, DRY, SOLID, YAGNI, Separation of Concerns, Law of Demeter, Boy Scout Rule, Convention over Configuration, plus stack detection. Language-agnostic principles that help agents ship production-quality code.",
+      "name": "coding-base",
+      "description": "Everyday code-quality principles: KISS, DRY, YAGNI, Boy Scout Rule and Convention over Configuration.",
+      "version": "1.0.0",
       "source": "./",
       "strict": false,
       "skills": [
         "./skills/kiss",
         "./skills/dry",
         "./skills/yagni",
-        "./skills/solid",
-        "./skills/separation-of-concerns",
-        "./skills/law-of-demeter",
         "./skills/boy-scout-rule",
-        "./skills/convention-over-configuration",
+        "./skills/convention-over-configuration"
+      ]
+    },
+    {
+      "name": "coding-arch",
+      "description": "Structure and coupling principles: Separation of Concerns and Law of Demeter.",
+      "version": "1.0.0",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/separation-of-concerns",
+        "./skills/law-of-demeter"
+      ]
+    },
+    {
+      "name": "coding-solid",
+      "description": "SOLID principles for codebases built around interfaces and class hierarchies.",
+      "version": "1.0.0",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/solid"
+      ]
+    },
+    {
+      "name": "coding-detect",
+      "description": "Stack detection that writes .agents/stack-context.md, for projects without a CLAUDE.md or AGENTS.md.",
+      "version": "1.0.0",
+      "source": "./",
+      "strict": false,
+      "skills": [
         "./skills/detect-stack"
       ]
     }

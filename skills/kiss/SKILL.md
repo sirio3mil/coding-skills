@@ -9,7 +9,7 @@ metadata:
 
 ## Before Applying
 
-If `.agents/stack-context.md` exists, read it first. Apply this principle using idiomatic patterns for the detected stack. For framework-specific details, use context7 MCP or web search — don't guess.
+The project's own instructions are the stack context and take precedence over this skill: `CLAUDE.md`, `AGENTS.md` and any `.claude/rules/` files already in context. Only when the project has none of them, read `.agents/stack-context.md` if it exists. Apply this principle using idiomatic patterns for that stack, and where the project's conventions and this skill disagree, follow the project. For framework-specific details, use context7 MCP or web search — don't guess.
 
 ## Principle
 

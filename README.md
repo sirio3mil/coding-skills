@@ -4,6 +4,56 @@ Foundational coding principles as AI agent skills. KISS, DRY, SOLID, YAGNI, Sepa
 
 Built by [Jordan Coin Jackson](https://github.com/JordanCoin). Contributions welcome — [open a PR](#contributing) or [file an issue](https://github.com/JordanCoin/codingskills/issues).
 
+## This Fork
+
+This is a fork of [JordanCoin/codingskills](https://github.com/JordanCoin/codingskills). The skill content is the
+same; two things differ:
+
+1. **The marketplace is split into four plugins**, because in Claude Code the plugin is the unit you enable per
+   project. A project turns on only the groups it wants:
+
+   | Plugin | Skills |
+   |---|---|
+   | `coding-base` | kiss, dry, yagni, boy-scout-rule, convention-over-configuration |
+   | `coding-arch` | separation-of-concerns, law-of-demeter |
+   | `coding-solid` | solid |
+   | `coding-detect` | detect-stack |
+
+2. **The project's `CLAUDE.md`, `AGENTS.md` and `.claude/rules/` are the stack context.** Every skill reads them
+   first and defers to them; `.agents/stack-context.md` is only a fallback, and `detect-stack` refuses to write it
+   when the project already documents its stack.
+
+### Enable it in a project
+
+Nothing is installed per machine. Add this to the project's versioned `.claude/settings.json`, listing only the
+plugins that project wants:
+
+```json
+{
+  "extraKnownMarketplaces": {
+    "coding-skills": {
+      "source": { "source": "github", "repo": "sirio3mil/coding-skills", "ref": "v1.0.0" },
+      "autoUpdate": false
+    }
+  },
+  "enabledPlugins": {
+    "coding-base@coding-skills": true,
+    "coding-arch@coding-skills": true
+  }
+}
+```
+
+On any machine that opens the project and trusts the folder, Claude Code clones the marketplace in the background
+and loads the enabled plugins. Skills are invoked with the plugin prefix, e.g. `/coding-base:kiss`. Projects that
+don't declare the marketplace never see them.
+
+### Release a new version
+
+1. Merge upstream changes if wanted: `git fetch upstream && git merge upstream/main`.
+2. Bump `version` in every plugin entry of `.claude-plugin/marketplace.json` (the version is the cache key: without
+   a bump, machines keep the old copy).
+3. Commit, tag `vX.Y.Z`, push with tags, and update `ref` in each project that should move to it.
+
 ## What Are These?
 
 Skills are markdown files that give AI agents specialized knowledge for specific tasks. These skills teach agents *how to think about code quality* — not syntax, not framework APIs, but the principles that separate code that ships reliably from code that breaks in production.
@@ -79,9 +129,11 @@ npx skills add JordanCoin/codingskills --list
 
 ### Option 2: Claude Code Plugin
 
+In this fork, prefer enabling plugins per project as shown in [This Fork](#this-fork). To install one for
+yourself in every project instead:
+
 ```bash
-/plugin marketplace add JordanCoin/codingskills
-/plugin install coding-skills
+/plugin install coding-base --marketplace sirio3mil/coding-skills
 ```
 
 ### Option 3: Clone and Install

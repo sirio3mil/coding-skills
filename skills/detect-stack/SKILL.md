@@ -9,6 +9,10 @@ metadata:
 
 Analyze the current codebase and generate `.agents/stack-context.md`. Run this on first use in a project, or when the stack context is missing or stale.
 
+## When Not to Run
+
+If the project already has a `CLAUDE.md` or `AGENTS.md` that describes its stack and conventions, do not write `.agents/stack-context.md`: it would duplicate those files and go stale. Tell the user the stack context already exists and stop.
+
 ## What to Detect
 
 Scan the project root for these signals:
