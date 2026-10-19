@@ -25,8 +25,7 @@ same; two things differ:
 
 ### Enable it in a project
 
-Nothing is installed per machine. Add this to the project's versioned `.claude/settings.json`, listing only the
-plugins that project wants:
+Add this to the project's versioned `.claude/settings.json`, listing only the plugins that project wants:
 
 ```json
 {
@@ -43,9 +42,19 @@ plugins that project wants:
 }
 ```
 
-On any machine that opens the project and trusts the folder, Claude Code clones the marketplace in the background
-and loads the enabled plugins. Skills are invoked with the plugin prefix, e.g. `/coding-base:kiss`. Projects that
-don't declare the marketplace never see them.
+Project settings enable plugins but don't install them. On each machine, once per project, run from the project
+folder one install per enabled plugin (it also registers the marketplace if missing), then restart the session or
+run `/reload-plugins`:
+
+```bash
+claude plugin install coding-base@coding-skills --scope project
+claude plugin install coding-arch@coding-skills --scope project
+```
+
+Until then the `/plugin` **Errors** tab shows `Plugin "<name>" … not cached` or `… isn't installed here`. The install
+rewrites `.claude/settings.json` with the same keys, possibly reordered.
+
+Skills are invoked with the plugin prefix, e.g. `/coding-base:kiss`. Projects that don't enable them never see them.
 
 ### Release a new version
 
