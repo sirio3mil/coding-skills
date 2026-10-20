@@ -59,6 +59,9 @@ claude plugin install coding-arch@coding-skills --scope project
 Until then the `/plugin` **Errors** tab shows `Plugin "<name>" … not cached` or `… isn't installed here`. The install
 rewrites `.claude/settings.json` with the same keys, possibly reordered.
 
+`chess-refactoring` is enabled and installed the same way, as `chess-refactoring@coding-skills`; Claude Code fetches it
+from its own repository.
+
 Skills are invoked with the plugin prefix, e.g. `/coding-base:kiss`. Projects that don't enable them never see them.
 
 ### Release a new version
@@ -151,6 +154,10 @@ yourself in every project instead:
 
 ```bash
 /plugin install coding-base --marketplace sirio3mil/coding-skills
+/plugin install coding-arch --marketplace sirio3mil/coding-skills
+/plugin install coding-solid --marketplace sirio3mil/coding-skills
+/plugin install coding-detect --marketplace sirio3mil/coding-skills
+/plugin install chess-refactoring --marketplace sirio3mil/coding-skills
 ```
 
 ### Option 3: Clone and Install
@@ -194,6 +201,9 @@ Once installed, just ask your agent to help with code quality:
 
 "Audit this codebase for tech debt"
 → Uses all skills sequentially
+
+"Split this refactor into reviewable steps"
+→ Uses chess-refactoring:plan, then one /chess-refactoring:move per step
 ```
 
 Invoke skills directly:
@@ -216,6 +226,7 @@ Invoke skills directly:
 |-----------|---------|------------|
 | Adding a new feature | yagni | kiss, separation-of-concerns |
 | Refactoring | separation-of-concerns, solid | dry, boy-scout-rule |
+| Refactoring that needs several reviews | chess-refactoring | separation-of-concerns, solid, dry |
 | Reviewing a PR | kiss, dry | law-of-demeter, convention-over-configuration |
 | Fixing a bug | boy-scout-rule, kiss | separation-of-concerns |
 | Designing module boundaries | separation-of-concerns, solid | law-of-demeter |
