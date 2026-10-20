@@ -7,7 +7,7 @@ Built by [Jordan Coin Jackson](https://github.com/JordanCoin). Contributions wel
 ## This Fork
 
 This is a fork of [JordanCoin/codingskills](https://github.com/JordanCoin/codingskills). The skill content is the
-same; two things differ:
+same; three things differ:
 
 1. **The marketplace is split into four plugins**, because in Claude Code the plugin is the unit you enable per
    project. A project turns on only the groups it wants:
@@ -23,6 +23,11 @@ same; two things differ:
    first and defers to them; `.agents/stack-context.md` is only a fallback, and `detect-stack` refuses to write it
    when the project already documents its stack.
 
+3. **It also lists `chess-refactoring`**, a plugin of my own that lives in its own repository,
+   [sirio3mil/chess-refactoring](https://github.com/sirio3mil/chess-refactoring): refactoring planned as a whole and
+   played as small moves that a human reviews one at a time. Its rules defer to the plugins above when a project
+   enables them.
+
 ### Enable it in a project
 
 Add this to the project's versioned `.claude/settings.json`, listing only the plugins that project wants:
@@ -31,7 +36,7 @@ Add this to the project's versioned `.claude/settings.json`, listing only the pl
 {
   "extraKnownMarketplaces": {
     "coding-skills": {
-      "source": { "source": "github", "repo": "sirio3mil/coding-skills", "ref": "v1.0.0" },
+      "source": { "source": "github", "repo": "sirio3mil/coding-skills", "ref": "v1.1.0" },
       "autoUpdate": false
     }
   },
@@ -59,9 +64,12 @@ Skills are invoked with the plugin prefix, e.g. `/coding-base:kiss`. Projects th
 ### Release a new version
 
 1. Merge upstream changes if wanted: `git fetch upstream && git merge upstream/main`.
-2. Bump `version` in every plugin entry of `.claude-plugin/marketplace.json` (the version is the cache key: without
-   a bump, machines keep the old copy).
+2. Bump `version` in every plugin entry whose skills changed in `.claude-plugin/marketplace.json` (the version is
+   the cache key: without a bump, machines keep the old copy).
 3. Commit, tag `vX.Y.Z`, push with tags, and update `ref` in each project that should move to it.
+
+`chess-refactoring` is released from its own repository; here only its `ref` changes, followed by a release of the
+marketplace.
 
 ## What Are These?
 

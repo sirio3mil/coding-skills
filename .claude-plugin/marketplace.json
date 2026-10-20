@@ -5,8 +5,8 @@
     "url": "https://github.com/sirio3mil"
   },
   "metadata": {
-    "description": "Fork of JordanCoin/codingskills split into separately enabled plugins, so each project turns on only the principles it wants",
-    "version": "1.0.0"
+    "description": "Fork of JordanCoin/codingskills split into separately enabled plugins, so each project turns on only the principles it wants, plus Chess Refactoring",
+    "version": "1.1.0"
   },
   "plugins": [
     {
@@ -53,6 +53,15 @@
       "skills": [
         "./skills/detect-stack"
       ]
+    },
+    {
+      "name": "chess-refactoring",
+      "description": "AI-assisted refactoring played like chess: a target position reached through small, verifiable moves that a human reviews one at a time. Lives in its own repository.",
+      "source": {
+        "source": "github",
+        "repo": "sirio3mil/chess-refactoring",
+        "ref": "v0.1.0"
+      }
     }
   ]
 }
